@@ -8,8 +8,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import { LoadingPlugin } from "vue-loading-overlay";
 import "vue-loading-overlay/dist/css/index.css";
 import VueGoogleMaps from "@fawmi/vue-google-maps";
-// axios.defaults.baseURL = "https://prodslm.devshr.com/";
-axios.defaults.baseURL = "http://127.0.0.1:8000/";
+axios.defaults.baseURL = "https://prodslm.devshr.com/";
+// axios.defaults.baseURL = "http://127.0.0.1:8000/";
 
 //
 const app = createApp(App);
