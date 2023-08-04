@@ -46,7 +46,7 @@
               </select>
             </div>
             <div>
-              <label for="" class="">ยี่ห้อรถ </label>
+              <label for="" class="">ยี่ห้อรถที่ต้องการ</label>
               <select
                 class="select select-bordered w-full max-w-xs mt-1"
                 v-model="brand_id"
