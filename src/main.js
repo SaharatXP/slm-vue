@@ -33,6 +33,10 @@ const routes = [
     path: "/search",
     component: () => import("./views/searchCar.vue"),
   },
+  {
+    path: "/promotions",
+    component: () => import("./views/Promotion.vue"),
+  },
 
   {
     path: "/vehicle/:vehicle_id",
