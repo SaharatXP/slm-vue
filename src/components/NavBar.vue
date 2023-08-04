@@ -13,7 +13,9 @@
       <a href="/promotions" class="btn btn-ghost normal-case text-xl"
         >โปรโมชั่น</a
       >
-      <a class="btn btn-ghost normal-case text-xl">ติดต่อเรา</a>
+      <a href="/slmSales" class="btn btn-ghost normal-case text-xl"
+        >ติดต่อเรา</a
+      >
     </div>
   </div>
 </template>

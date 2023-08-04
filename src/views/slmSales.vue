@@ -9,9 +9,34 @@
     <NavBar></NavBar>
 
     <div class="card card-compact bg-base-100 shadow-xl mx-10 mt-10">
-      <div class="mx-10">หน้าหลัก > โปรโมชั่น</div>
-      <img src="../assets/promotionmock/mock1.png" alt="หน้าปก" class="h-1/6" />
-      <div class="card-body"></div>
+      <div class="mx-10">หน้าหลัก > ติดต่อสามเหลี่ยมออโต้</div>
+
+      <div class="card-body">
+        Google Maps:
+        <GMapMap
+          :center="{ lat: 51.093048, lng: 6.84212 }"
+          :zoom="7"
+          map-type-id="terrain"
+          style="width: 100vw; height: 500px"
+        >
+        </GMapMap>
+        <hr class="mt-3" />
+        <div class="text-2xl text-center mb-5">เซลล์</div>
+
+        <div class="grid grid-cols-5 gap-4 text-center">
+          <div v-for="u in saleData" :key="u">
+            <div class="avatar text-center">
+              <div class="w-24 rounded-full">
+                <img src="../assets/avatar.png" />
+              </div>
+            </div>
+            <div class="text-center">
+              {{ u.fname }} {{ u.lname }} ( เซลล์{{ u.saleName }} ) <br />
+              โทร : {{ u.saleTel }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -30,12 +55,13 @@ export default {
     return {
       data: [],
       authToken: "",
-      pdData: [],
+      saleData: [],
       brandOptions: [],
       modelOptions: [],
       yearOptions: [],
       isLoading: false,
       fullPage: true,
+      center: { lat: 51.093048, lng: 6.84212 },
       // fullPage: true,
 
       page: 1,
@@ -48,23 +74,21 @@ export default {
     };
   },
   created() {
-    // this.getVehicles();
+    this.getSales();
   },
   methods: {
-    getVehicles() {
+    getSales() {
       this.isLoading = true;
       axios
-        .get("api/vehicle", {
+        .get("api/sales", {
           params: {
-            vehicle_id: this.$route.params.vehicle_id,
+            page: 1,
           },
         })
         .then((res) => {
           this.img = res.data.data.img;
-
-          this.pdData = res.data.data.master;
-          //   this.img = res.data.img;
-          // console.log(this.pdData);
+          this.saleData = res.data.data.master.data;
+          // console.log(this.saleData);
           this.isLoading = false;
         })
         .catch((error) => {

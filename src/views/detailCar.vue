@@ -43,17 +43,48 @@
             <p class="text-[30px] text-green-700">
               {{ pdData.brand_name }} - {{ pdData.model_name }}
             </p>
-            <p class="text-xl mt-5">
-              <b> ทะเบียน :</b> {{ pdData.license_plate }} <br />
-              เลขไมล์ : {{ pdData.mileage }} <br />
-              ปี : {{ pdData.year }} <br />
-              สีรถ : {{ pdData.color_name }} <br />
-              เกียร์ : {{ pdData.gear }} <br />
-              ประเภทเชื้อเพลิง : {{ pdData.oil_type }} <br />
-              ระบบการขับเคลื่อน :
-              {{ !pdData.drive_system ? "-" : pdData.drive_system }} ล้อ<br />
-              เกรดรถ : A <br />
-            </p>
+            <div class="flex flex-row text-xl mt-4">
+              <Icon icon="ion:id-card" class="text-xxl mt-1" /> &nbsp;ทะเบียน :
+              {{ pdData.license_plate }}
+            </div>
+
+            <div class="flex flex-row text-xl">
+              <Icon
+                icon="iconamoon:number-1-circle-fill"
+                class="text-xxl mt-1"
+              />
+              &nbsp;เลขไมล์ :
+              {{ pdData.mileage }}
+            </div>
+
+            <div class="flex flex-row text-xl">
+              <Icon icon="iconamoon:calendar-2-fill" class="text-xxl mt-1" />
+              &nbsp;ปี : {{ pdData.year }}
+            </div>
+            <div class="flex flex-row text-xl">
+              <Icon icon="mdi:color" class="text-xxl mt-1" />&nbsp;สีรถ :
+              {{ pdData.color_name }}
+            </div>
+            <div class="flex flex-row text-xl">
+              <Icon icon="octicon:gear-16" class="text-xxl mt-1" />
+              &nbsp;เกียร์ : {{ pdData.gear }}
+            </div>
+            <div class="flex flex-row text-xl">
+              <Icon
+                icon="mdi:oil"
+                class="text-xxl mt-1"
+              />&nbsp;ประเภทเชื้อเพลิง : {{ pdData.oil_type }}
+            </div>
+            <div class="flex flex-row text-xl">
+              <Icon icon="solar:wheel-broken" class="text-xxl mt-1" />
+              &nbsp;ระบบการขับเคลื่อน :
+              {{ !pdData.drive_system ? "-" : pdData.drive_system }} ล้อ
+            </div>
+            <div class="flex flex-row text-xl">
+              <Icon icon="ic:outline-grade" class="text-xxl mt-1" />
+              &nbsp;เกรดรถ : A
+            </div>
+
             <h2 class="card-actions justify-end text-red-700">
               <del>ราคา : {{ pdData.price }} บาท</del>
             </h2>
@@ -62,24 +93,43 @@
             </div>
 
             <div class="card-actions justify-end text-xl mt-5">
-              <button class="btn btn-success">ติดต่อสามเหลี่ยมออโต้</button>
+              <button
+                class="btn btn-success text-white text-xl"
+                onclick="my_modal_1.showModal()"
+              >
+                ติดต่อสามเหลี่ยมออโต้
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <dialog id="my_modal_1" class="modal">
+    <form method="dialog" class="modal-box">
+      <h3 class="font-bold text-xl">ติดต่อเซลล์ {{ pdData.saleName }}</h3>
+      <p class="py-4 text-xl">
+        Line: @slmkk<br />
+        โทร: {{ pdData.saleTel }}
+      </p>
+      <div class="modal-action">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">ปิด</button>
+      </div>
+    </form>
+  </dialog>
 </template>
 <script>
 import axios from "axios";
 import "vue-loading-overlay/dist/css/index.css";
 import Loading from "vue-loading-overlay";
-
+import { Icon } from "@iconify/vue";
 import NavBar from "../components/NavBar.vue";
 export default {
   components: {
     NavBar,
     Loading,
+    Icon,
   },
   data() {
     return {
